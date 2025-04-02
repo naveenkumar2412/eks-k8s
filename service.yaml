@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx  # This should match the label of your NGINX pods
+  ports:
+    - protocol: TCP
+      port: 80           # Port that NGINX will listen on inside the cluster
+      targetPort: 80      # Port on which the NGINX container listens
+      nodePort: 30001     # This is the port exposed on the node (choose a port within the range 30000-32767)
+  type: NodePort         # Expose the service as NodePort
